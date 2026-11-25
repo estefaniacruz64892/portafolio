@@ -1,0 +1,563 @@
+/* =========================================================
+   Portafolio — estilos globales
+   Orden: variables → reset → base → layout → componentes → utilidades
+   ========================================================= */
+
+/* ---------- 1. Variables (tema claro por defecto) ---------- */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: #eef2ff;
+  --border: #e5e7eb;
+  --danger: #dc2626;
+  --success: #16a34a;
+
+  /* Variables que el Shadow DOM de <project-card> sí puede leer:
+     las custom properties atraviesan la frontera del shadow root. */
+  --card-bg: #ffffff;
+  --card-border: var(--border);
+
+  --radius: 0.75rem;
+  --max-width: 72rem;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --bg-alt: #111c33;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --accent: #818cf8;
+    --accent-strong: #a5b4fc;
+    --accent-soft: #1e1b4b;
+    --border: #1f2a44;
+    --card-bg: #16213b;
+  }
+}
+
+/* ---------- 2. Reset mínimo ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* el width incluye padding y border */
+}
+
+body,
+h1, h2, h3, p, figure, ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- 3. Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* las anclas no quedan tapadas por el header fijo */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+body {
+  /* Se definen una vez y todo el documento los hereda */
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--accent-strong);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+  background: var(--accent-soft);
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Foco visible solo cuando se navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+main:focus {
+  outline: none; /* destino del skip-link: recibe foco pero no necesita marco */
+}
+
+/* ---------- 4. Layout ---------- */
+.container {
+  width: min(100% - 2.5rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.container.narrow {
+  max-width: 44rem;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section-alt {
+  background: var(--bg-alt);
+}
+
+.section-intro {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ---------- 5. Componentes ---------- */
+
+/* Skip link: oculto hasta recibir foco */
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1rem;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-list,
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a,
+.social-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-list a:hover,
+.social-list a:hover {
+  color: var(--accent-strong);
+}
+
+/* Hero */
+.hero {
+  padding-block: clamp(4rem, 12vw, 8rem);
+  background:
+    radial-gradient(circle at 85% 10%, var(--accent-soft), transparent 55%),
+    var(--bg);
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  max-width: 20ch;
+  margin-bottom: 1.25rem;
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 55ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-primary { color: #0f172a; }
+}
+
+.btn-ghost {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+/* Sobre mí */
+.about {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .about {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+.about-figure {
+  justify-self: center;
+  text-align: center;
+}
+
+.about-figure img {
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgb(79 70 229 / 0.25);
+}
+
+.about-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.about-text p + p {
+  margin-top: 1rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Proyectos: los <project-card> se ubican en una grilla adaptable */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1.5rem;
+}
+
+/* Tabla */
+.table-wrapper {
+  overflow-x: auto; /* en móvil se desplaza la tabla, no la página */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 36rem;
+}
+
+caption {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+th,
+td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--accent-soft);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:hover {
+  background: var(--bg-alt);
+}
+
+/* FAQ */
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none; /* oculta el triángulo por defecto */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+details p {
+  padding: 0 1.25rem 1.25rem;
+  color: var(--muted);
+}
+
+/* Formulario */
+.contact-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+fieldset {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+legend {
+  padding-inline: 0.5rem;
+  font-weight: 700;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+label {
+  font-weight: 500;
+}
+
+input:not([type="radio"], [type="checkbox"]),
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.req {
+  color: var(--danger);
+}
+
+/* Validación: :user-invalid marca el error solo después de que el usuario
+   interactuó con el campo (no apenas carga la página, como :invalid). */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 20%, transparent);
+}
+
+input:user-valid:not([type="radio"], [type="checkbox"]),
+textarea:user-valid {
+  border-color: var(--success);
+}
+
+.inline-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.inline-group label,
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--accent);
+}
+
+.contact-form .btn {
+  justify-self: start;
+}
+
+/* Dialog */
+.dialog {
+  width: min(100% - 2rem, 28rem);
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 25px 50px rgb(0 0 0 / 0.25);
+}
+
+.dialog::backdrop {
+  background: rgb(15 23 42 / 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.dialog h2 {
+  font-size: 1.5rem;
+}
+
+.dialog p {
+  margin-bottom: 1rem;
+}
+
+.dialog form {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+/* Footer */
+.site-footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ---------- 6. Utilidades ---------- */
+
+/* Oculto a la vista pero legible por lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

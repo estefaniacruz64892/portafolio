@@ -2,7 +2,7 @@
 
 Portafolio estático construido con **HTML5 semántico, CSS3 y JavaScript nativo**, sin librerías ni frameworks. Aplica progresivamente los 22 módulos del curso [Learn HTML de web.dev](https://web.dev/learn/html).
 
-🔗 **Demo en vivo:** https://TU-USUARIO.github.io/portafolio/
+🔗 **Demo en vivo:** https://estefaniacruz64892.github.io/portafolio/
 
 ---
 
@@ -163,4 +163,4 @@ python -m http.server 8000
 
 ---
 
-**Autora:** Estefa · Estudiante de Ingeniería Informática
+**Autora:** Estefanía · Estudiante de Ingeniería Informática

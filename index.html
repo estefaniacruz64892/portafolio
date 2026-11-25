@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ===== Módulos 2-4: Overview, Document structure, Metadata ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estefa | Portafolio — Ingeniería Informática y Automatización</title>
+  <meta name="description" content="Portafolio de Estefa, estudiante de Ingeniería Informática especializada en dashboards, automatización de procesos y análisis de datos.">
+  <meta name="author" content="Estefa">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Open Graph: vista previa al compartir el enlace en redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Estefa | Portafolio">
+  <meta property="og:description" content="Dashboards, automatizaciones y desarrollo web con HTML semántico.">
+  <meta property="og:image" content="img/avatar.svg">
+  <meta property="og:locale" content="es_CO">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- defer: el script se descarga en paralelo y se ejecuta cuando el DOM ya está construido -->
+  <script src="js/project-card.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <!-- Módulo 18 (Focus): enlace para saltar directo al contenido con teclado -->
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ===== Módulos 5-6 y 11: Semantic HTML, Headings, Navigation ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo" aria-label="Estefa, ir al inicio">Estefa<span aria-hidden="true">.</span></a>
+
+      <nav aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- Hero: presentación. Único <h1> de la página -->
+    <section id="inicio" class="hero" aria-labelledby="titulo-principal">
+      <div class="container">
+        <p class="eyebrow">Ingeniería Informática · Datos · Automatización</p>
+        <h1 id="titulo-principal">Hola, soy Estefa. Construyo sistemas que ahorran trabajo manual.</h1>
+        <p class="lead">
+          Diseño <strong>dashboards</strong>, <strong>automatizaciones</strong> y
+          <strong>pipelines de datos</strong> que convierten procesos operativos en flujos
+          confiables y escalables.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-ghost" href="#contacto">Contactarme</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Módulos 8, 14 y 19: Text basics, Images, Other inline text elements ===== -->
+    <section id="sobre-mi" class="section" aria-labelledby="titulo-sobre-mi">
+      <div class="container about">
+        <figure class="about-figure">
+          <!-- width/height evitan saltos de diseño (CLS); loading="lazy" difiere la carga -->
+          <img src="img/avatar.svg" alt="Ilustración con la inicial E sobre fondo degradado, usada como avatar de Estefa"
+               width="240" height="240" loading="lazy" decoding="async">
+          <figcaption>Avatar ilustrado</figcaption>
+        </figure>
+
+        <div class="about-text">
+          <h2 id="titulo-sobre-mi">Sobre mí</h2>
+          <p>
+            Soy estudiante de <strong>Ingeniería Informática</strong> y trabajo en el área de
+            analítica y automatización de Recursos Humanos en
+            <a href="https://crackthecode.la" rel="noopener" target="_blank">Crack the Code</a>.
+            Mi foco es eliminar tareas repetitivas y darle a los equipos información confiable
+            para decidir.
+          </p>
+          <p>
+            Trabajo a diario con <abbr title="Google Apps Script">GAS</abbr>,
+            Google Sheets, Looker Studio, Metabase y <abbr title="Structured Query Language">SQL</abbr>.
+            Ahora estoy fortaleciendo mis bases de desarrollo web con
+            <abbr title="HyperText Markup Language">HTML</abbr> semántico y accesible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Módulo 16: Template, slot, and shadow ===== -->
+    <section id="proyectos" class="section section-alt" aria-labelledby="titulo-proyectos">
+      <div class="container">
+        <h2 id="titulo-proyectos">Proyectos</h2>
+        <p class="section-intro">
+          Cada tarjeta es un componente reutilizable <code>&lt;project-card&gt;</code>
+          construido con <code>&lt;template&gt;</code> y Shadow DOM.
+        </p>
+
+        <div class="projects-grid">
+          <project-card status="En producción">
+            <span slot="title">Dashboard de rotación docente</span>
+            <span slot="description">
+              Tablero en Looker Studio que mide la tasa de rotación de profesores por
+              periodo y motivo de baja, para anticipar necesidades de contratación.
+            </span>
+            <span slot="tags">Looker Studio · Google Sheets · Métricas de RR. HH.</span>
+          </project-card>
+
+          <project-card status="En producción">
+            <span slot="title">Generador automático de contratos</span>
+            <span slot="description">
+              Script que crea contratos de renovación desde una hoja de cálculo usando
+              plantillas de Google Docs, con validaciones y registro de cada documento generado.
+            </span>
+            <span slot="tags">Apps Script · Google Docs · Automatización</span>
+          </project-card>
+
+          <project-card status="En producción">
+            <span slot="title">Planificación de capacidad docente</span>
+            <span slot="description">
+              Dashboard de disponibilidad y carga de profesores que cruza horarios y
+              asignaciones para detectar huecos de capacidad antes de que afecten la operación.
+            </span>
+            <span slot="tags">Apps Script · Metabase · Análisis de datos</span>
+          </project-card>
+
+          <project-card href="https://github.com/TU-USUARIO/portafolio" status="Este sitio">
+            <span slot="title">Portafolio web semántico</span>
+            <span slot="description">
+              Este sitio: HTML5 semántico, formulario con validación nativa,
+              <code>&lt;dialog&gt;</code>, <code>&lt;details&gt;</code> y Web Components sin librerías.
+            </span>
+            <span slot="tags">HTML5 · CSS3 · JavaScript · Web Components</span>
+          </project-card>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plantilla del componente. El navegador la analiza pero NO la renderiza -->
+    <template id="project-card-template">
+      <style>
+        /* Estos estilos viven dentro del Shadow DOM: no se filtran hacia afuera
+           ni los estilos globales los pisan (encapsulación). */
+        :host {
+          display: block;
+          container-type: inline-size;
+        }
+        article {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          padding: 1.5rem;
+          border-radius: 1rem;
+          background: var(--card-bg, #fff);
+          border: 1px solid var(--card-border, #e5e7eb);
+          box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        article:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgb(0 0 0 / 0.08);
+        }
+        .status {
+          align-self: flex-start;
+          font-size: 0.75rem;
+          font-weight: 600;
+          padding: 0.2rem 0.6rem;
+          border-radius: 999px;
+          background: var(--accent-soft, #eef2ff);
+          color: var(--accent-strong, #4338ca);
+        }
+        h3 {
+          margin: 0;
+          font-size: 1.15rem;
+          line-height: 1.3;
+        }
+        p { margin: 0; flex: 1; }
+        .tags {
+          font-size: 0.85rem;
+          color: var(--muted, #6b7280);
+        }
+        a {
+          font-weight: 600;
+          color: var(--accent-strong, #4338ca);
+          text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        a:focus-visible {
+          outline: 3px solid var(--accent, #4f46e5);
+          outline-offset: 3px;
+          border-radius: 4px;
+        }
+      </style>
+
+      <article>
+        <span class="status" part="status"></span>
+        <h3><slot name="title">Proyecto sin título</slot></h3>
+        <p><slot name="description">Sin descripción.</slot></p>
+        <span class="tags"><slot name="tags"></slot></span>
+        <a class="link" part="link">Ver más <span aria-hidden="true">→</span></a>
+      </article>
+    </template>
+
+    <!-- ===== Módulo 12: Tables ===== -->
+    <section id="habilidades" class="section" aria-labelledby="titulo-habilidades">
+      <div class="container">
+        <h2 id="titulo-habilidades">Habilidades</h2>
+
+        <div class="table-wrapper" role="region" aria-labelledby="caption-habilidades" tabindex="0">
+          <table>
+            <caption id="caption-habilidades">Herramientas técnicas, nivel y uso principal</caption>
+            <thead>
+              <tr>
+                <th scope="col">Herramienta</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Nivel</th>
+                <th scope="col">Uso principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Google Apps Script</th>
+                <td>Automatización</td>
+                <td>Avanzado</td>
+                <td>Generación de documentos y flujos entre Sheets, Docs y Drive</td>
+              </tr>
+              <tr>
+                <th scope="row">Google Sheets</th>
+                <td>Datos</td>
+                <td>Avanzado</td>
+                <td>Bases operativas, fórmulas y consolidación de información</td>
+              </tr>
+              <tr>
+                <th scope="row">Looker Studio / Metabase</th>
+                <td>Visualización</td>
+                <td>Intermedio</td>
+                <td>Dashboards de métricas de RR. HH. y operación</td>
+              </tr>
+              <tr>
+                <th scope="row">SQL</th>
+                <td>Datos</td>
+                <td>Intermedio</td>
+                <td>Consultas sobre el datalake y validación de datos</td>
+              </tr>
+              <tr>
+                <th scope="row">HTML5 y CSS3</th>
+                <td>Desarrollo web</td>
+                <td>En formación</td>
+                <td>Interfaces semánticas y accesibles</td>
+              </tr>
+              <tr>
+                <th scope="row">JavaScript</th>
+                <td>Desarrollo web</td>
+                <td>En formación</td>
+                <td>Interactividad y APIs nativas del navegador</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Módulo 20: Details and summary ===== -->
+    <section id="faq" class="section section-alt" aria-labelledby="titulo-faq">
+      <div class="container narrow">
+        <h2 id="titulo-faq">Preguntas frecuentes</h2>
+
+        <!-- name="faq": acordeón exclusivo, abrir uno cierra los demás (sin JavaScript) -->
+        <div class="faq-list">
+          <details name="faq" open>
+            <summary>¿En qué tipo de proyectos puedo ayudarte?</summary>
+            <p>
+              Automatización de procesos repetitivos, dashboards de seguimiento y
+              organización de datos operativos para que tu equipo trabaje con información confiable.
+            </p>
+          </details>
+
+          <details name="faq">
+            <summary>¿Qué herramientas usas?</summary>
+            <p>
+              Principalmente el ecosistema de Google (Apps Script, Sheets, Looker Studio),
+              Metabase y SQL. Para la web, HTML, CSS y JavaScript sin frameworks cuando el proyecto lo permite.
+            </p>
+          </details>
+
+          <details name="faq">
+            <summary>¿Por qué este sitio no usa librerías?</summary>
+            <p>
+              Para demostrar que el navegador ya trae lo necesario: <code>&lt;dialog&gt;</code>
+              para modales, <code>&lt;details&gt;</code> para acordeones, validación nativa de
+              formularios y Web Components para reutilizar código.
+            </p>
+          </details>
+
+          <details name="faq">
+            <summary>¿Estás disponible para prácticas?</summary>
+            <p>
+              Sí, me interesan oportunidades en desarrollo, datos y automatización.
+              Escríbeme desde el formulario de contacto.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Módulo 13: Forms ===== -->
+    <section id="contacto" class="section" aria-labelledby="titulo-contacto">
+      <div class="container narrow">
+        <h2 id="titulo-contacto">Contacto</h2>
+        <p class="section-intro">
+          Los campos marcados con <span aria-hidden="true" class="req">*</span><span class="visually-hidden">asterisco</span> son obligatorios.
+        </p>
+
+        <!--
+          method="post": los datos viajan en el cuerpo de la petición, no en la URL.
+          GET los expondría en la barra de direcciones, el historial y los logs del servidor.
+          action: reemplazar por el endpoint real (ver README). Hoy main.js intercepta el envío.
+        -->
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/TU_ID" method="post">
+
+          <fieldset>
+            <legend>Tus datos</legend>
+
+            <div class="field">
+              <label for="nombre">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+              <input id="nombre" name="nombre" type="text" autocomplete="name"
+                     required minlength="3" maxlength="80"
+                     aria-describedby="nombre-ayuda">
+              <small id="nombre-ayuda" class="hint">Entre 3 y 80 caracteres.</small>
+            </div>
+
+            <div class="field">
+              <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email"
+                     required placeholder="nombre@dominio.com">
+            </div>
+
+            <div class="field">
+              <label for="telefono">Teléfono (opcional)</label>
+              <!-- pattern: valida el formato sin JavaScript -->
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel"
+                     pattern="\+?[0-9\s\-]{7,15}"
+                     title="Entre 7 y 15 dígitos. Puede empezar con + e incluir espacios o guiones."
+                     aria-describedby="telefono-ayuda">
+              <small id="telefono-ayuda" class="hint">Ejemplo: +57 300 123 4567</small>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tu mensaje</legend>
+
+            <div class="field">
+              <label for="motivo">Motivo <span class="req" aria-hidden="true">*</span></label>
+              <select id="motivo" name="motivo" required>
+                <option value="">Selecciona una opción</option>
+                <option value="proyecto">Propuesta de proyecto</option>
+                <option value="practicas">Oportunidad de prácticas o empleo</option>
+                <option value="colaboracion">Colaboración académica</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <fieldset class="inline-group">
+              <legend>Medio de respuesta preferido <span class="req" aria-hidden="true">*</span></legend>
+              <label><input type="radio" name="respuesta" value="email" required checked> Correo</label>
+              <label><input type="radio" name="respuesta" value="telefono"> Teléfono</label>
+            </fieldset>
+
+            <div class="field">
+              <label for="mensaje">Mensaje <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="mensaje" name="mensaje" rows="5"
+                        required minlength="20" maxlength="1000"
+                        aria-describedby="mensaje-ayuda"></textarea>
+              <small id="mensaje-ayuda" class="hint">Mínimo 20 caracteres.</small>
+            </div>
+
+            <label class="checkbox">
+              <input type="checkbox" name="privacidad" required>
+              Acepto que mis datos se usen solo para responder este mensaje. <span class="req" aria-hidden="true">*</span>
+            </label>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Módulo 21: Dialog ===== -->
+  <!-- Modal de confirmación. Se abre con showModal() desde main.js -->
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="dialog-titulo">
+    <h2 id="dialog-titulo">¡Mensaje listo!</h2>
+    <p>Gracias, <strong data-field="nombre"></strong>. Te responderé por <span data-field="respuesta"></span>.</p>
+    <p class="hint">Resumen: <span data-field="motivo"></span>.</p>
+
+    <!-- method="dialog": el botón cierra el modal de forma nativa, sin JavaScript -->
+    <form method="dialog">
+      <button class="btn btn-primary" value="ok" autofocus>Entendido</button>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <time datetime="2026">2026</time> Estefa. Hecho con HTML semántico, sin librerías.</p>
+      <nav aria-label="Redes sociales">
+        <ul class="social-list">
+          <li><a href="https://github.com/TU-USUARIO" rel="noopener" target="_blank">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/TU-USUARIO" rel="noopener" target="_blank">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
